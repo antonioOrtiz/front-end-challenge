@@ -41,6 +41,16 @@ export default function Home() {
     },
   ]);
 
+  var [quantity, setQuantity] = useState(0);
+
+  function handleIncrement() {
+    setQuantity((quantity) => quantity + 1);
+  }
+
+  function handleDecrement() {
+    setQuantity((quantity) => quantity - 1);
+  }
+
   return (
     <div>
       <Head>
@@ -86,6 +96,17 @@ export default function Home() {
                   <li className="black-item">black</li>
                   <li className="beige-item">beige</li>
                 </ul>
+
+                <div class="number">
+                  <span class="minus" onClick={handleDecrement}>
+                    -
+                  </span>
+                  <input type="text" value={`quantity (${quantity})`} />
+                  <span class="plus" onClick={handleIncrement}>
+                    +
+                  </span>
+                </div>
+
                 <select name="sizes" id="sizes">
                   <option value="0">size</option>
                   <option value="xx-small">xx-small</option>
