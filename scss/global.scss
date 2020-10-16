@@ -28,12 +28,16 @@ img {
     width: 100%;
 }
 
-p,
-a {
-    font-size: small;
+p {
+    font-size: .7em;
+    line-height: 1.75em;
     span {
         font-weight: bold;
     }
+}
+
+a {
+    font-size: x-small;
 }
 
 ul#menu {
@@ -46,6 +50,7 @@ ul#menu {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
+    margin-bottom: 4%;
 }
 
 ul#menu li {
@@ -53,30 +58,31 @@ ul#menu li {
     text-align: center;
     list-style-type: none;
     background-color: #fff;
-    border-radius: 1px;
+    border-radius: 1.5px;
     border: 1px solid #000000;
+    font-size: small;
+    padding: 1%;
+    color: #000000
 }
 
-ul#menu li span {
-    color: black;
-    text-decoration: none;
-    transition: 0.2s;
-    font-size: x-small;
+ul#menu li.black-item {
+    background-color: #000000;
+    color: #ffff
 }
 
-ul#menu li span:hover {
-    background-color: #808080;
-    transition: 0.3s;
-    color: white
+ul#menu li.beige-item {
+    color: #000000;
+    background-color: #f2d9a5;
 }
 
 select {
     width: 100%;
+    margin-bottom: 4%;
 }
 
 button {
-    margin: 5% 0;
-    padding: 1.5% 0;
+    margin: 5% 0 4%;
+    padding: 2% 0%;
     width: 100%;
     background-color: black;
     color: #fff;
@@ -115,7 +121,6 @@ button {
     background-color: #ffffff;
     .item {
         width: 100%;
-        background-color: aqua;
     }
 }
 
@@ -125,7 +130,7 @@ button {
         height: 100%;
         align-items: flex-start;
         div {
-            margin-top: 50%;
+            margin: 50% auto;
         }
     }
     .feature-container,
@@ -145,6 +150,7 @@ button {
             padding-right: 15%;
         }
         .item {
+            margin: auto;
             width: 100%;
         }
         .product-copy {
@@ -153,6 +159,12 @@ button {
     }
     .gallery-container {
         grid-template-columns: 50% 50%;
+        .img-container>a,
+        p {
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+        }
         img,
         .item--center {
             margin: 0 auto;
