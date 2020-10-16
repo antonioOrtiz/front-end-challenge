@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 
 export default function Home() {
   var [products, setProducts] = useState([
-    {
-      name: 'Hi-Waist',
-      imgSrc:
-        'https://cdn.accentuate.io/8488635591/11611289059400/10-hi-waist-grapefruit-v1596554281555.png?700x1000',
-      strength: 'Heavy',
-    },
+    // {
+    //   name: 'Hi-Waist',
+    //   imgSrc:
+    //     'https://cdn.accentuate.io/8488635591/11611289059400/10-hi-waist-grapefruit-v1596554281555.png?700x1000',
+    //   strength: 'Heavy',
+    // },
     {
       name: 'Hiphugger',
       imgSrc:
@@ -109,56 +109,17 @@ export default function Home() {
         </div>
       </div>
       <div className="gallery-container">
-        <div className="item">
-          <div className="img-container">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0795/1599/t/550/assets/product-image-hiphugger-pine-1_800x.progressive.jpg?v=12376506267943978321"
-              alt=""
-            />
-            <a href="#">Shop Hiphugger</a>
-            <p>Heavy days</p>
-          </div>
-        </div>
-        <div className="item">
-          <div className="img-container">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0795/1599/t/550/assets/product-image-cheeky-dusk-1_800x.progressive.jpg?v=2855225748247821412"
-              alt=""
-            />
-            <a href="#">Shop Cheeky</a>
-            <p>light days</p>
-          </div>
-        </div>
-        <div className="item--center">
-          <div className="img-container">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0795/1599/t/550/assets/product-image-thong-black-2_800x.progressive.jpg?v=2906008199094514758"
-              alt=""
-            />
-            <a href="#">Shop Thong</a>
-            <p>lightest days</p>
-          </div>
-        </div>
-        <div className="item">
-          <div className="img-container">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0795/1599/t/550/assets/product-image-sport-beige-1_800x.progressive.jpg?v=15684164004110123735"
-              alt=""
-            />
-            <a href="#">Shop Sport</a>
-            <p>medium days</p>
-          </div>
-        </div>
-        <div className="item">
-          <div className="img-container">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0795/1599/t/550/assets/product-image-boyshort-navy-1_800x.progressive.jpg?v=1599479964802298078"
-              alt=""
-            />
-            <a href="#">Shop Boyshort</a>
-            <p>light days</p>
-          </div>
-        </div>
+        {products.map((product, i, array) => {
+          return (
+            <div className={i === 3 ? 'item--center' : 'item'}>
+              <div className="img-container">
+                <img src={product.imgSrc} alt={product.name} />
+                <a href="#">Shop {product.name}</a>
+                <p>{product.strength} days</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
