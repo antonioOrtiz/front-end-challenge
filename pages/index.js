@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function MySelectComponent() {
-  var [defaultSelectedText, setDefaultSelectedText] = useState('');
+function MySelectComponent({ optionsList }) {
+  var [defaultSelectedText, setDefaultSelectedText] = useState('size');
   var [showOptionList, setShowOptionList] = useState(false);
-  var [optionList, setOptionList] = useState([]);
+  var [optionsList, setOptionList] = useState(optionsList);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside, false);
@@ -29,18 +29,53 @@ function MySelectComponent() {
 
   // This method handles the setting of name in select text area
   // and list display on selection
-  handleOptionClick = (e) => {
-    this.setState({
-      defaultSelectText: e.target.getAttribute('data-name'),
-      showOptionList: false,
-    });
-  };
+  function handleOptionClick(e) {
+    setDefaultSelectedText(e.target.getAttribute('data-name'));
+    setShowOptionList(false);
+  }
+
+  return (
+    <div id="custom-select-container" className="custom-select-container">
+      <div
+        className={showOptionList ? 'selected-text active' : 'selected-text'}
+        onClick={handleListDisplay}
+      >
+        {defaultSelectedText}
+      </div>
+      {showOptionList && (
+        <ul className="select-options">
+          {optionsList.map((option) => {
+            return (
+              <li
+                className="custom-select-option"
+                data-name={option}
+                key={option}
+                onClick={handleOptionClick}
+              >
+                {option}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
 }
 
 function Cart() {
   var [quantity, setQuantity] = useState(0);
   var [activeId, setActiveId] = useState('black');
   var [colors, setColors] = useState(['black', 'beige']);
+  var [defaultSelectText, setDefaultSelectText] = useState('size');
+  var [sizes, setSizes] = useState([
+    'size',
+    'x-small',
+    'small',
+    'medium',
+    'large',
+    'x-large',
+    'xx-large',
+  ]);
 
   function handleIncrement(e) {
     e.preventDefault();
@@ -106,16 +141,13 @@ function Cart() {
           +
         </button>
       </div>
+      <div>
+        <MySelectComponent
+          defaultText={defaultSelectText}
+          optionsList={sizes}
+        />
+      </div>
 
-      <select name="sizes" id="sizes">
-        <option value="0">size</option>
-        <option value="xx-small">xx-small</option>
-        <option value="x-small">x-small</option>
-        <option value="small">small</option>
-        <option value="medium">medium</option>
-        <option value="large">large</option>
-        <option value="x-large">x-large</option>
-      </select>
       <label htmlFor="sizes">
         {' '}
         <a href="#">what's my size</a>
@@ -203,9 +235,7 @@ export default function Home() {
         </div>
         <div className="item">
           <div className="vertical-aligner-helper">
-            <div>
-              <Cart />
-            </div>
+            <Cart />
           </div>
         </div>
       </div>

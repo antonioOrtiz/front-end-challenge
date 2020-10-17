@@ -65,7 +65,6 @@ ul#menu li {
     font-size: small;
     padding: 1%;
     color: #000000;
-    cursor: pointer;
 }
 
 ul#menu li.black-item {
@@ -95,24 +94,17 @@ ul#menu li.beige-item {
 }
 
 input {
-    margin: 5% 0 4%;
-    padding: 0.5% 0%;
+    height: 25px;
     width: 100%;
     text-align: center;
     border: 1px solid #ddd;
-    border-radius: 1px;
+    border-radius: 4px;
     display: inline-block;
     vertical-align: middle;
 }
 
-select {
-    width: 100%;
-    margin-bottom: 4%;
-}
-
 button {
-    border-radius: 1px;
-    margin: 5% 0 4%;
+    margin: 0;
     padding: 2% 0%;
     width: 100%;
     background-color: black;
@@ -162,14 +154,74 @@ button[disabled] {
     }
 }
 
+.selected-text {
+    font-size: smaller;
+    margin-top: 5%;
+    padding: 5px 20px;
+    background-color: #fff;
+    border: 1px solid #000000;
+}
+
+.selected-text::after {
+    margin-top: 2%;
+    float: right;
+    content: '';
+    border: 7px solid transparent;
+    border-color: black transparent transparent transparent;
+}
+
+.selected-text.active::after {
+    margin-top: 1%;
+    float: right;
+    top: 8px;
+    border-color: transparent transparent black transparent;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.select-options {
+    margin-top: 0;
+    width: 100%;
+}
+
+li {
+    padding: 5px 20px;
+    font-size: small;
+    width: 100%;
+    color: #fff;
+    background: #000000;
+    text-align: left;
+    list-style-type: none;
+    border-bottom: 1px solid #666666;
+    cursor: pointer;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+li:hover {
+    color: #ffffff;
+    background-color: #32a6a6;
+}
+
 @media only screen and (min-width: 768px) {
     .vertical-aligner-helper {
         display: flex;
         height: 100%;
         align-items: flex-start;
-        div {
+        .product-copy,
+        form {
             margin: 50% auto;
         }
+    }
+    .vertical-aligner-helper div,
+    form #custom-select-container.custom-select-container .selected-text.active,
+    .vertical-aligner-helper div,
+    form #custom-select-container.custom-select-container .selected-text {
+        margin: 5% auto 0;
     }
     .feature-container,
     .gallery-container {
