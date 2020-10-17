@@ -1,8 +1,46 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 
+function MySelectComponent() {
+  var [defaultSelectedText, setDefaultSelectedText] = useState('');
+  var [showOptionList, setShowOptionList] = useState(false);
+  var [optionList, setOptionList] = useState([]);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside, false);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside, false);
+    };
+  }, [defaultSelectedText]);
+
+  function handleClickOutside(e) {
+    if (
+      !e.target.classList.contains('custom-select-option') &&
+      !e.target.classList.contains('selected-text')
+    ) {
+      setShowOptionList(false);
+    }
+  }
+
+  // This method handles the display of option list
+  function handleListDisplay() {
+    setShowOptionList((showOptionList) => !showOptionList);
+  }
+
+  // This method handles the setting of name in select text area
+  // and list display on selection
+  handleOptionClick = (e) => {
+    this.setState({
+      defaultSelectText: e.target.getAttribute('data-name'),
+      showOptionList: false,
+    });
+  };
+}
+
 function Cart() {
   var [quantity, setQuantity] = useState(0);
+  var [activeId, setActiveId] = useState('black');
+  var [colors, setColors] = useState(['black', 'beige']);
 
   function handleIncrement(e) {
     e.preventDefault();
@@ -12,6 +50,15 @@ function Cart() {
   function handleDecrement(e) {
     e.preventDefault();
     setQuantity((quantity) => quantity - 1);
+  }
+
+  function handleChange(e) {
+    setQuantity(e.target.value);
+  }
+
+  function handleClick(e, id) {
+    console.log('id ', id);
+    setActiveId(id);
   }
 
   const displayCounter = quantity < 1;
@@ -24,22 +71,38 @@ function Cart() {
 
       <ul id="menu">
         <li>color</li>
-        <li className="black-item">black</li>
-        <li className="beige-item">beige</li>
+        {colors.map((currentItem) => {
+          return (
+            <li
+              key={currentItem}
+              className={`${currentItem}-item`}
+              onClick={(e) => handleClick(e, currentItem)}
+            >
+              {currentItem}{' '}
+              {activeId === currentItem ? (
+                <i className="fas fa-check"></i>
+              ) : null}
+            </li>
+          );
+        })}
       </ul>
 
-      <div class="number">
+      <div className="number">
         {
           <button
-            class="minus"
+            className="minus"
             disabled={displayCounter}
             onClick={(e) => handleDecrement(e)}
           >
             -
           </button>
         }
-        <input type="text" value={`quantity (${quantity})`} />
-        <button class="plus" onClick={(e) => handleIncrement(e)}>
+        <input
+          type="text"
+          value={`quantity (${quantity})`}
+          onChange={(e) => handleChange(e)}
+        />
+        <button className="plus" onClick={(e) => handleIncrement(e)}>
           +
         </button>
       </div>
@@ -53,7 +116,7 @@ function Cart() {
         <option value="large">large</option>
         <option value="x-large">x-large</option>
       </select>
-      <label for="sizes">
+      <label htmlFor="sizes">
         {' '}
         <a href="#">what's my size</a>
       </label>
@@ -151,7 +214,10 @@ export default function Home() {
       <div className="gallery-container">
         {products.map((product, i, array) => {
           return (
-            <div className={i === 3 ? 'item--center' : 'item'}>
+            <div
+              key={product.name}
+              className={i === 3 ? 'item--center' : 'item'}
+            >
               <div className="img-container">
                 <img src={product.imgSrc} alt={product.name} />
                 <a href="#">Shop {product.name}</a>
