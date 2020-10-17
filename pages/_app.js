@@ -1,4 +1,6 @@
+// Styles can be found in root scss/global.scss
 import '../scss/global.scss';
+
 import '@fortawesome/fontawesome-free/css/all.css';
 
 function MyApp({ Component, pageProps }) {

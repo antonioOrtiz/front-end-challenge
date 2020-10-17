@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 
+// hand rolled Select Componet
 function MySelectComponent({ optionsList }) {
   var [defaultSelectedText, setDefaultSelectedText] = useState('size');
   var [showOptionList, setShowOptionList] = useState(false);
@@ -62,6 +63,7 @@ function MySelectComponent({ optionsList }) {
   );
 }
 
+// hand rolled Cart Componet
 function Cart() {
   var [quantity, setQuantity] = useState(0);
   var [activeId, setActiveId] = useState('black');
@@ -160,14 +162,10 @@ function Cart() {
   );
 }
 
+// Home/Index Component
+
 export default function Home() {
   var [products, setProducts] = useState([
-    // {
-    //   name: 'Hi-Waist',
-    //   imgSrc:
-    //     'https://cdn.accentuate.io/8488635591/11611289059400/10-hi-waist-grapefruit-v1596554281555.png?700x1000',
-    //   strength: 'Heavy',
-    // },
     {
       name: 'Hiphugger',
       imgSrc:

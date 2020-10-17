@@ -28,7 +28,9 @@ img {
     width: 100%;
 }
 
+// font-size declarations
 p,
+li,
 input {
     font-size: 0.7em;
     line-height: 1.75em;
@@ -41,6 +43,11 @@ a {
     font-size: x-small;
 }
 
+.selected-text {
+    font-size: smaller;
+}
+
+// color menu styles
 ul#menu,
 .number {
     font-family: sans-serif;
@@ -62,7 +69,6 @@ ul#menu li {
     background-color: #fff;
     border-radius: 1.5px;
     border: 1px solid #000000;
-    font-size: small;
     padding: 1%;
     color: #000000;
 }
@@ -81,6 +87,7 @@ ul#menu li.beige-item {
     margin: 0;
 }
 
+//quantity-styles
 .minus,
 .plus {
     display: inline-block;
@@ -118,6 +125,7 @@ button[disabled] {
     background-color: #cccccc;
 }
 
+//general layout styles
 .feature-container,
 .gallery-container {
     padding: 0 10%;
@@ -154,8 +162,8 @@ button[disabled] {
     }
 }
 
+//selector component styles
 .selected-text {
-    font-size: smaller;
     margin-top: 5%;
     padding: 5px 20px;
     background-color: #fff;
@@ -190,7 +198,6 @@ ul {
 
 li {
     padding: 5px 20px;
-    font-size: small;
     width: 100%;
     color: #fff;
     background: #000000;
@@ -207,6 +214,7 @@ li:hover {
     background-color: #32a6a6;
 }
 
+//media queries
 @media only screen and (min-width: 768px) {
     .vertical-aligner-helper {
         display: flex;
