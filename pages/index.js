@@ -43,13 +43,17 @@ export default function Home() {
 
   var [quantity, setQuantity] = useState(0);
 
-  function handleIncrement() {
+  function handleIncrement(e) {
+    e.preventDefault();
     setQuantity((quantity) => quantity + 1);
   }
 
-  function handleDecrement() {
+  function handleDecrement(e) {
+    e.preventDefault();
     setQuantity((quantity) => quantity - 1);
   }
+
+  const displayCounter = quantity < 1;
 
   return (
     <div>
@@ -58,6 +62,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* 'feature-container' handles the product description, current product selected and form for it */}
       <div className="feature-container">
         <div className="item">
           <div className="vertical-aligner-helper">
@@ -98,13 +103,19 @@ export default function Home() {
                 </ul>
 
                 <div class="number">
-                  <span class="minus" onClick={handleDecrement}>
-                    -
-                  </span>
+                  {
+                    <button
+                      class="minus"
+                      disabled={displayCounter}
+                      onClick={(e) => handleDecrement(e)}
+                    >
+                      -
+                    </button>
+                  }
                   <input type="text" value={`quantity (${quantity})`} />
-                  <span class="plus" onClick={handleIncrement}>
+                  <button class="plus" onClick={(e) => handleIncrement(e)}>
                     +
-                  </span>
+                  </button>
                 </div>
 
                 <select name="sizes" id="sizes">
@@ -129,6 +140,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* 'gallery-container' handles the showcasing of the products */}
       <div className="gallery-container">
         {products.map((product, i, array) => {
           return (

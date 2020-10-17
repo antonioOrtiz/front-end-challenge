@@ -90,6 +90,7 @@
             text-align: center;
             border-radius: 4px;
             border: 1px solid #ddd;
+            color: black
         }
         
         input {
@@ -113,6 +114,13 @@
             width: 100%;
             background-color: black;
             color: #fff;
+        }
+        
+        button:disabled,
+        button[disabled] {
+            color: #666666;
+            border: 1px solid #999999;
+            background-color: #cccccc;
         }
         
         .feature-container,
