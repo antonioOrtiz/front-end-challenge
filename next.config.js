@@ -1,4 +1,6 @@
 module.exports = {
+  distDir: 'build',
+
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
