@@ -1,6 +1,70 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 
+function Cart() {
+  var [quantity, setQuantity] = useState(0);
+
+  function handleIncrement(e) {
+    e.preventDefault();
+    setQuantity((quantity) => quantity + 1);
+  }
+
+  function handleDecrement(e) {
+    e.preventDefault();
+    setQuantity((quantity) => quantity - 1);
+  }
+
+  const displayCounter = quantity < 1;
+
+  return (
+    <form>
+      <p>
+        <span>$35.00</span>
+      </p>
+
+      <ul id="menu">
+        <li>color</li>
+        <li className="black-item">black</li>
+        <li className="beige-item">beige</li>
+      </ul>
+
+      <div class="number">
+        {
+          <button
+            class="minus"
+            disabled={displayCounter}
+            onClick={(e) => handleDecrement(e)}
+          >
+            -
+          </button>
+        }
+        <input type="text" value={`quantity (${quantity})`} />
+        <button class="plus" onClick={(e) => handleIncrement(e)}>
+          +
+        </button>
+      </div>
+
+      <select name="sizes" id="sizes">
+        <option value="0">size</option>
+        <option value="xx-small">xx-small</option>
+        <option value="x-small">x-small</option>
+        <option value="small">small</option>
+        <option value="medium">medium</option>
+        <option value="large">large</option>
+        <option value="x-large">x-large</option>
+      </select>
+      <label for="sizes">
+        {' '}
+        <a href="#">what's my size</a>
+      </label>
+      <br />
+      <br />
+      <button>add to cart</button>
+      <a href="#">build a cycle set and save up to 20%</a>
+    </form>
+  );
+}
+
 export default function Home() {
   var [products, setProducts] = useState([
     // {
@@ -41,20 +105,6 @@ export default function Home() {
     },
   ]);
 
-  var [quantity, setQuantity] = useState(0);
-
-  function handleIncrement(e) {
-    e.preventDefault();
-    setQuantity((quantity) => quantity + 1);
-  }
-
-  function handleDecrement(e) {
-    e.preventDefault();
-    setQuantity((quantity) => quantity - 1);
-  }
-
-  const displayCounter = quantity < 1;
-
   return (
     <div>
       <Head>
@@ -91,51 +141,7 @@ export default function Home() {
         <div className="item">
           <div className="vertical-aligner-helper">
             <div>
-              <form>
-                <p>
-                  <span>$35.00</span>
-                </p>
-
-                <ul id="menu">
-                  <li>color</li>
-                  <li className="black-item">black</li>
-                  <li className="beige-item">beige</li>
-                </ul>
-
-                <div class="number">
-                  {
-                    <button
-                      class="minus"
-                      disabled={displayCounter}
-                      onClick={(e) => handleDecrement(e)}
-                    >
-                      -
-                    </button>
-                  }
-                  <input type="text" value={`quantity (${quantity})`} />
-                  <button class="plus" onClick={(e) => handleIncrement(e)}>
-                    +
-                  </button>
-                </div>
-
-                <select name="sizes" id="sizes">
-                  <option value="0">size</option>
-                  <option value="xx-small">xx-small</option>
-                  <option value="x-small">x-small</option>
-                  <option value="small">small</option>
-                  <option value="medium">medium</option>
-                  <option value="large">large</option>
-                  <option value="x-large">x-large</option>
-                </select>
-                <label for="sizes">
-                  {' '}
-                  <a href="#">what's my size</a>
-                </label>
-                <br />
-                <br />
-                <button>add to cart</button>
-                <a href="#">build a cycle set and save up to 20%</a>
-              </form>
+              <Cart />
             </div>
           </div>
         </div>
