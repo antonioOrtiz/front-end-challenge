@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // hand rolled Select Componet
 function MySelectComponent({ optionsList }) {
@@ -117,7 +118,7 @@ function Cart() {
             >
               {currentItem}{' '}
               {activeId === currentItem ? (
-                <i className="fas fa-check"></i>
+                <FontAwesomeIcon icon="check" />
               ) : null}
             </li>
           );
