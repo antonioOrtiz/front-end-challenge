@@ -227,10 +227,18 @@ export default function Home() {
           </div>
         </div>
         <div className="item item--order-modifier">
-          <img
+           <input type="checkbox" id="btnControl"/>
+
+           <label className="img-on-hover"  for="btnControl">
+
+              <img
             src="https://cdn.accentuate.io/8488635591/11611289059400/10-hi-waist-grapefruit-v1596554281555.png?700x1000"
-            alt=""
-          />
+            alt="10-hi-waist-grapefruit"
+            />
+
+              <div></div>
+
+            </label>
         </div>
         <div className="item">
           <div className="vertical-aligner-helper">
